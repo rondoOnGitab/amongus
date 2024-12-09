@@ -10,7 +10,6 @@ public enum MyState {
 
     private final Map<String, Boolean> behavior;
 
-    // Costruttore per ogni stato
     MyState() {
         this.behavior = new HashMap<>();
         initializeBehavior();
