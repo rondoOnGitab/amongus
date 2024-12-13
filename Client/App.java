@@ -6,10 +6,12 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
 
+import Classes.Crewmate;
+
 class Client{
 public static void main(String[] args) throws IOException
     {
-        
+        /*
         DatagramSocket socket = new DatagramSocket();
 
         Scanner sc = new Scanner(System.in);
@@ -27,6 +29,11 @@ public static void main(String[] args) throws IOException
         socket.receive(packetRisp);
         String mexRisp = new String(packetRisp.getData(),0,packetRisp.getLength());
         System.out.println(mexRisp);
+        */
+
+        Crewmate c1 = new Crewmate();
+
+        
         
     }
 }
