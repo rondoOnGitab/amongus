@@ -3,6 +3,7 @@ package Server;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.Scanner;
 
 public class App
 {
@@ -58,7 +59,19 @@ public class App
             packetRisp.setPort(packet.getPort());
             socket.send(packetRisp); 
             */
-              
+            socket.receive(packet);
+            String mex = new String(packet.getData(),0,packet.getLength());
+            System.out.println("Messaggio ricevuto: "+mex);
+            Scanner sc = new Scanner(System.in);
+
+            String mexRisp = "Ciao ";
+            mexRisp += sc.nextLine();
+
+            byte[] bufferRisp = mexRisp.getBytes();
+            DatagramPacket packetRisp = new DatagramPacket(bufferRisp, bufferRisp.length);
+            packetRisp.setAddress(packet.getAddress());
+            packetRisp.setPort(packet.getPort());
+            socket.send(packetRisp); 
         }       
     }
 }
