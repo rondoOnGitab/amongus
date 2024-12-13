@@ -8,7 +8,7 @@ public class Entity {
     protected MyState state;
     protected KeyHandler kh;
 
-    public Entity(){
+    public Entity(int x, int y){
         this.nome = "";
         this.x = 0;
         this.y = 0;

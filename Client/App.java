@@ -11,12 +11,14 @@ import Classes.Crewmate;
 class Client{
 public static void main(String[] args) throws IOException
     {
-        /*
+        
         DatagramSocket socket = new DatagramSocket();
 
-        Scanner sc = new Scanner(System.in);
-        String mex = sc.nextLine();
         String ip = "172.16.102.112";
+        
+        Crewmate c1 = new Crewmate(10, 10);
+
+        String mex = "x: " +c1.getX() + "y: " +c1.getY();
 
         byte[] buffer = mex.getBytes();
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
@@ -29,11 +31,8 @@ public static void main(String[] args) throws IOException
         socket.receive(packetRisp);
         String mexRisp = new String(packetRisp.getData(),0,packetRisp.getLength());
         System.out.println(mexRisp);
-        */
 
-        Crewmate c1 = new Crewmate();
 
-        
         
     }
 }
