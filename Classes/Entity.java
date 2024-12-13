@@ -1,9 +1,10 @@
 package Classes;
 
 public class Entity {
-    private int x;
-    private int y;
-    private int speed;
-    private MyState state;
-    private KeyHandler kh;
+    protected  String nome;
+    protected int x;
+    protected int y;
+    protected int speed;
+    protected MyState state;
+    protected KeyHandler kh;
 }
