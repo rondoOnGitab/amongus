@@ -5,4 +5,5 @@ public class Entity {
     private int y;
     private int speed;
     private MyState state;
+    private KeyHandler kh;
 }
