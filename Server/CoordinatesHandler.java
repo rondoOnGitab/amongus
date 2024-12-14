@@ -1,7 +1,8 @@
 package Server;
 
 import Classes.*;
-import Client.GUIHandler;
+import Client.ClientClasses.GUIHandler;
+
 import java.util.ArrayList;
 
 public class CoordinatesHandler extends Thread

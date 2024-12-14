@@ -1,4 +1,4 @@
-package Client;
+package Client.ClientClasses;
 
 public class GUIHandler extends Thread{
     
