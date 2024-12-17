@@ -13,7 +13,7 @@ public class Entity {
         this.x = 0;
         this.y = 0;
         this.speed = 0;
-        this.state = null;
+        this.state = MyState.ALIVE;
         this.kh = new KeyHandler();
     }
 }

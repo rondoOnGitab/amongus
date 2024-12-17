@@ -1,5 +1,6 @@
-package Classes;
+package Classes.CrewmateClasses;
 
+import Classes.*;
 import java.util.ArrayList;
 
 public class Crewmate extends Entity{

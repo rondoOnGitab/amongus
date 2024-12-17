@@ -6,7 +6,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
 
-import Classes.Crewmate;
+import Classes.CrewmateClasses.*;
+import Classes.ImpostorClasses.*;
 
 class Client{
 public static void main(String[] args) throws IOException

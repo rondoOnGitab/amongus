@@ -1,4 +1,4 @@
-package Classes;
+package Classes.CrewmateClasses;
 
 public class ShortT extends Task {
     

@@ -3,19 +3,19 @@ package Server.ServerClasses;
 import java.util.ArrayList;
 
 import Classes.*;
+import Classes.CrewmateClasses.*;
+import Classes.ImpostorClasses.*;
 
 public class GameState {
     
     private ArrayList<Entity> players;
-    private boolean isGameOver;
 
     public GameState()
     {
         this.players = new ArrayList<Entity>();
-        this.isGameOver = false;
     }
 
-    public void checkTasks()
+    public boolean checkTasks()
     {
         for (Entity e : this.players)
         {
@@ -24,14 +24,14 @@ public class GameState {
             if(e instanceof Crewmate)
             {
                 if(!((Crewmate)e).isAllTasksCompleted())
-                    return;
+                    return false;
             }
         }
 
-        this.isGameOver = true;
+       return true;
     }
 
-    public void checkKilled()
+    public boolean checkKilled()
     {
         for (Entity e : this.players)
         {
@@ -39,6 +39,6 @@ public class GameState {
             //La GameManager (thread) si occupa poi di far finire il gioco
         }
 
-        this.isGameOver = true;
+        return true;
     }
 }

@@ -1,4 +1,6 @@
-package Classes;
+package Classes.ImpostorClasses;
+
+import Classes.*;
 
 public class Impostor extends Entity{
     
