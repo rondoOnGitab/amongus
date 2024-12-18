@@ -5,16 +5,23 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.util.Scanner;
 
+import Server.ServerClasses.GameManager;
+import Server.ServerClasses.GameState;
+
 public class App
 {
     public static void main(String[] args) throws IOException
     {
-        DatagramSocket socket = new DatagramSocket(12345);
 
-        byte[] buffer = new byte[1500]; //1500 per MTU (cerca cos'è)
+        final int PORT = 12345; // Porta UDP per il server
+        DatagramSocket socket=new DatagramSocket(PORT);
+        GameManager manager = new GameManager();    
+
+
+        byte[] buffer = new byte[1500];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
        
-        while(true)
+        while(/*!manager.getState().isFinished()*/true)
         {
             /* 
             socket.receive(packet);
@@ -72,6 +79,8 @@ public class App
             packetRisp.setAddress(packet.getAddress());
             packetRisp.setPort(packet.getPort());
             socket.send(packetRisp); 
+
+            
         }       
     }
 }

@@ -41,4 +41,9 @@ public class GameState {
 
         return true;
     }
+
+    public synchronized boolean isFinished()
+    {
+        return true;
+    }
 }
