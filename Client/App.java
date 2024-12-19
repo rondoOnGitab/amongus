@@ -6,13 +6,16 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 import Classes.CrewmateClasses.*;
 import Classes.ImpostorClasses.*;
+import Client.ClientClasses.MyPanel;
 
 class Client{
 public static void main(String[] args) throws IOException
     {
-        
+        /*
         DatagramSocket socket = new DatagramSocket();
 
         String ip = "172.16.102.112";
@@ -32,8 +35,21 @@ public static void main(String[] args) throws IOException
         socket.receive(packetRisp);
         String mexRisp = new String(packetRisp.getData(),0,packetRisp.getLength());
         System.out.println(mexRisp);
+        */
+        JFrame window = new JFrame();
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
+        window.setTitle("Game");
 
+        MyPanel gp = new MyPanel();
+        window.add(gp);
 
+        window.pack();
+
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+
+        gp.startGameThread();
         
     }
 }
