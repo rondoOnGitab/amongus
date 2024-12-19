@@ -6,7 +6,6 @@ public class Entity {
     protected int y;
     protected int speed;
     protected MyState state;
-    protected KeyHandler kh;
 
     public Entity(int x, int y){
         this.nome = "";
@@ -14,6 +13,5 @@ public class Entity {
         this.y = 0;
         this.speed = 0;
         this.state = MyState.ALIVE;
-        this.kh = new KeyHandler();
     }
 }

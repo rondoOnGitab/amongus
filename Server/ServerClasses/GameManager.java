@@ -24,10 +24,4 @@ public class GameManager extends Thread{
 
         }   
     }
-    /* 
-    public synchronized tGameState getState()
-    {
-        return this.state;
-    }
-        */
 }

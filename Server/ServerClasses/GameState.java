@@ -15,7 +15,7 @@ public class GameState {
         this.players = new ArrayList<Entity>();
     }
 
-    public boolean checkTasks()
+    public synchronized boolean checkTasks()
     {
         for (Entity e : this.players)
         {
@@ -31,7 +31,7 @@ public class GameState {
        return true;
     }
 
-    public boolean checkKilled()
+    public synchronized boolean checkKilled()
     {
         for (Entity e : this.players)
         {
