@@ -1,14 +1,16 @@
 package Classes.CrewmateClasses;
 
 import Classes.*;
+import Client.ClientClasses.MyPanel;
+
 import java.util.ArrayList;
 
 public class Crewmate extends Entity{
 
     private ArrayList<Task> tasks;
 
-    public Crewmate(int x, int y){
-        super(x, y);
+    public Crewmate(int x, int y,int speed,MyPanel gamePanel, KeyHandler kh){
+        super(x, y,speed,gamePanel,kh);
         this.x = x;
         this.y = y;
 

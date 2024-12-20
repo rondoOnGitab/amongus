@@ -5,7 +5,7 @@ import Client.ClientClasses.GUIHandler;
 
 import java.util.ArrayList;
 
-public class CoordinatesHandler extends Thread
+public class CoordinatesHandler extends Thread //Non è un thread è un gestore
 {
     GUIHandler gh;
     ArrayList<Entity> players;

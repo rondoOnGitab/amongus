@@ -6,7 +6,7 @@ import Classes.*;
 import Classes.CrewmateClasses.*;
 import Classes.ImpostorClasses.*;
 
-public class GameState {
+public class GameState { //Non è un thread è un gestore
     
     private ArrayList<Entity> players;
 

@@ -2,6 +2,7 @@ package Classes;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 
 import javax.imageio.ImageIO;
 
@@ -10,16 +11,21 @@ import Client.ClientClasses.MyPanel;
 import java.awt.Color;
 
 public class Entity {
+
     protected  String nome;
+
     protected int x;
     protected int y;
     protected int speed;
+
     protected MyState state;
     protected KeyHandler kh;
     protected MyPanel panel;
 
     public int spriteNum = 1;
     public int spriteCounter = 0;
+    public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
+    public String direction;
 
     public Entity(int x, int y, int speed, MyPanel panel, KeyHandler kh) {
         this.nome = "";
@@ -34,23 +40,20 @@ public class Entity {
         getPlayerImage();
     }
 
-    public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
-    public String direction;
-
     public void getPlayerImage(){
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk0001.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk0007.png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk0005.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk0001.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk0007.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk0005.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk0001.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk0007.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk0005.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk00013.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk00014.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/Images/Walk00015.png"));
+            up1 = ImageIO.read(new FileInputStream("/Images/Walk0001.png"));
+            up2 = ImageIO.read(new FileInputStream("/Images/Walk0007.png"));
+            up3 = ImageIO.read(new FileInputStream("/Images/Walk0005.png"));
+            down1 = ImageIO.read(new FileInputStream("/Images/Walk0001.png"));
+            down2 = ImageIO.read(new FileInputStream("/Images/Walk0007.png"));
+            down3 = ImageIO.read(new FileInputStream("/Images/Walk0005.png"));
+            right1 = ImageIO.read(new FileInputStream("/Images/Walk0001.png"));
+            right2 = ImageIO.read(new FileInputStream("/Images/Walk0007.png"));
+            right3 = ImageIO.read(new FileInputStream("/Images/Walk0005.png"));
+            left1 = ImageIO.read(new FileInputStream("/Images/Walk00013.png"));
+            left2 = ImageIO.read(new FileInputStream("/Images/Walk00014.png"));
+            left3 = ImageIO.read(new FileInputStream("/Images/Walk00015.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,7 +97,7 @@ public class Entity {
     }
 
     public void draw(Graphics2D g2d){
-        
+            
        // g2d.setColor(Color.WHITE);
        // g2d.fillRect(x, y, 48, 48);
 
@@ -149,6 +152,6 @@ public class Entity {
             break;
        }
 
-       g2d.drawImage(image, x, y, 48, 48, null);
+       g2d.drawImage(image, x, y, 80, 80, null);
     }
 }
