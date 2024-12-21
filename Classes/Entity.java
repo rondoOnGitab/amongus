@@ -35,7 +35,7 @@ public class Entity {
         //this.state = MyState.ALIVE;
         this.direction = "up";
         this.kh = kh;
-        this.panel = panel;
+        this.gamePanel = gamePanel;
 
         getPlayerImage();
     }
