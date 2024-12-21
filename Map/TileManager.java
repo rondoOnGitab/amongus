@@ -18,7 +18,11 @@ public class TileManager {
 
     public TileManager(MyPanel gamePanel)
     {
+<<<<<<< HEAD
         this.gamePanel = this.gamePanel;
+=======
+        this.gamePanel = gamePanel;
+>>>>>>> c69f87082490d4e7448c9dbe34065d0650607116
         this.tiles = new Tile[10];
         //this.mapTilesNum = new int [this.this.gamePanel.maxScreenCol][this.this.gamePanel.maxScreenRow];
 
@@ -71,7 +75,11 @@ public class TileManager {
             g2d.drawImage(this.tiles[0].getImage(),x,y,this.gamePanel.getTileSize(),this.gamePanel.getTileSize(),null); 
             //Cosi non funziona una sega del cazzo
         }
+<<<<<<< HEAD
         */
+=======
+            */
+>>>>>>> c69f87082490d4e7448c9dbe34065d0650607116
     }
 
 }
