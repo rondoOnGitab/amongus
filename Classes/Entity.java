@@ -20,14 +20,14 @@ public class Entity {
 
     protected MyState state;
     protected KeyHandler kh;
-    protected MyPanel panel;
+    protected MyPanel gamePanel;
 
     public int spriteNum = 1;
     public int spriteCounter = 0;
     public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
     public String direction;
 
-    public Entity(int x, int y, int speed, MyPanel panel, KeyHandler kh) {
+    public Entity(int x, int y, int speed, MyPanel gamePanel, KeyHandler kh) {
         this.nome = "";
         this.x = x;
         this.y = y;
@@ -35,25 +35,25 @@ public class Entity {
         //this.state = MyState.ALIVE;
         this.direction = "up";
         this.kh = kh;
-        this.panel = panel;
+        this.gamePanel = gamePanel;
 
         getPlayerImage();
     }
 
     public void getPlayerImage(){
         try {
-            up1 = ImageIO.read(new FileInputStream("/Images/Walk0001.png"));
-            up2 = ImageIO.read(new FileInputStream("/Images/Walk0007.png"));
-            up3 = ImageIO.read(new FileInputStream("/Images/Walk0005.png"));
-            down1 = ImageIO.read(new FileInputStream("/Images/Walk0001.png"));
-            down2 = ImageIO.read(new FileInputStream("/Images/Walk0007.png"));
-            down3 = ImageIO.read(new FileInputStream("/Images/Walk0005.png"));
-            right1 = ImageIO.read(new FileInputStream("/Images/Walk0001.png"));
-            right2 = ImageIO.read(new FileInputStream("/Images/Walk0007.png"));
-            right3 = ImageIO.read(new FileInputStream("/Images/Walk0005.png"));
-            left1 = ImageIO.read(new FileInputStream("/Images/Walk00013.png"));
-            left2 = ImageIO.read(new FileInputStream("/Images/Walk00014.png"));
-            left3 = ImageIO.read(new FileInputStream("/Images/Walk00015.png"));
+            up1 = ImageIO.read(new FileInputStream("Images/Walk0001.png"));
+            up2 = ImageIO.read(new FileInputStream("Images/Walk0007.png"));
+            up3 = ImageIO.read(new FileInputStream("Images/Walk0005.png"));
+            down1 = ImageIO.read(new FileInputStream("Images/Walk0001.png"));
+            down2 = ImageIO.read(new FileInputStream("Images/Walk0007.png"));
+            down3 = ImageIO.read(new FileInputStream("Images/Walk0005.png"));
+            right1 = ImageIO.read(new FileInputStream("Images/Walk0001.png"));
+            right2 = ImageIO.read(new FileInputStream("Images/Walk0007.png"));
+            right3 = ImageIO.read(new FileInputStream("Images/Walk0005.png"));
+            left1 = ImageIO.read(new FileInputStream("Images/Walk00013.png"));
+            left2 = ImageIO.read(new FileInputStream("Images/Walk00014.png"));
+            left3 = ImageIO.read(new FileInputStream("Images/Walk00015.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -152,6 +152,6 @@ public class Entity {
             break;
        }
 
-       g2d.drawImage(image, x, y, 80, 80, null);
+       g2d.drawImage(image, x, y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
 }

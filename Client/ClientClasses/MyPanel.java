@@ -1,6 +1,8 @@
 package Client.ClientClasses;
 
 import Classes.*;
+import Map.TileManager;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -13,25 +15,27 @@ import javax.swing.*;
 
 public class MyPanel extends JPanel implements Runnable{
     
-    final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    final int screenWidth = (int)screenSize.getWidth();
-    final int screenHeight = (int)screenSize.getHeight();
+    private final int screenWidth = (int)screenSize.getWidth();
+    private final int screenHeight = (int)screenSize.getHeight();
 
-    final int pxTileSize = 16;
-    final int scale = 3;
-    final int tileSize = scale*pxTileSize; // cambiamo uno tra pxTileSize o scale per avere una grandezza migliore
+    private final int originalTileSize = 16; //grandezza degli sprite, dei tile
+    private final int scale = 6; //ordine per cui lo moltiplichiamo
+    private final int tileSize = scale*originalTileSize; // cambiamo uno tra originalTileSize o scale per avere una grandezza migliore
 
-    final int maxScreenCol = (int)screenWidth/tileSize;
-    final int maxScreenRow = (int)screenHeight/tileSize;
+    private final int maxScreenCol = (int)screenWidth/tileSize;
+    private final int maxScreenRow = (int)screenHeight/tileSize;
 
-    final int FPS = 60;
+    private final int FPS = 60;
 
-    KeyHandler kh = new KeyHandler();
+    private TileManager tileManager = new TileManager(this);
 
-    Thread gameThread;
+    private KeyHandler kh = new KeyHandler();
 
-    Entity player;
+    private Thread gameThread;
+
+    private Entity player;
 
     public MyPanel()
     {
@@ -83,8 +87,25 @@ public class MyPanel extends JPanel implements Runnable{
         
         Graphics2D g2d = (Graphics2D)g;
 
+        tileManager.draw(g2d);
+
         player.draw(g2d);
 
         g2d.dispose();
+    }
+
+    public int getTileSize()
+    {
+        return this.tileSize;
+    }
+
+    public int getMaxScreenCol()
+    {
+        return this.maxScreenCol;
+    }
+
+    public int getMaxScreenRow()
+    {
+        return this.maxScreenRow;
     }
 }
