@@ -21,8 +21,4 @@ public class Tile{
     {
         this.image = img;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c69f87082490d4e7448c9dbe34065d0650607116
