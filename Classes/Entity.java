@@ -14,8 +14,8 @@ public class Entity {
 
     protected  String nome;
 
-    protected int x;
-    protected int y;
+    protected int worldX;
+    protected int worldY;
     protected int speed;
 
     protected MyState state;
@@ -27,15 +27,21 @@ public class Entity {
     public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
     public String direction;
 
+    private final int screenX;
+    private final int screenY;
+
     public Entity(int x, int y, int speed, MyPanel gamePanel, KeyHandler kh) {
         this.nome = "";
-        this.x = x;
-        this.y = y;
+        this.worldX = x;
+        this.worldY = y;
         this.speed = speed;
         //this.state = MyState.ALIVE;
         this.direction = "up";
         this.kh = kh;
         this.gamePanel = gamePanel;
+
+        screenX = gamePanel.screenWidth/2 - (gamePanel.getTileSize()/2);
+        screenY = gamePanel.screenHeight/2 - (gamePanel.getTileSize()/2);
 
         getPlayerImage();
     }
@@ -65,19 +71,19 @@ public class Entity {
             kh.leftPressed == true || kh.rightPressed == true) {
                 if (kh.upPressed == true) {
                     direction = "up";
-                    y -= speed;
+                    worldY -= speed;
                 } 
                 else if (kh.downPressed == true) {
                     direction = "down";
-                    y += speed;
+                    worldY += speed;
                 }
                 else if (kh.leftPressed == true) {
                     direction = "left";
-                    x -= speed;
+                    worldX -= speed;
                 }
                 else if (kh.rightPressed == true) {
                     direction = "right";
-                    x += speed;
+                    worldX += speed;
                 }
         
                 spriteCounter++;
@@ -152,6 +158,25 @@ public class Entity {
             break;
        }
 
-       g2d.drawImage(image, x, y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+       g2d.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
+
+    public int getWorldX() {
+        return worldX;
+    }
+
+    public int getWorldY() {
+        return worldY;
+    }
+
+    public int getScreenX()
+    {
+        return this.screenX;
+    }
+
+    public int getScreenY()
+    {
+        return this.screenY;
+    }
+
 }

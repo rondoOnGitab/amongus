@@ -23,7 +23,7 @@ public class TileManager {
         this.gamePanel = gamePanel;
 
         this.tiles = new Tile[10];
-        this.mapTilesNum = new int [this.gamePanel.getMaxScreenCol()][this.gamePanel.getMaxScreenRow()];
+        this.mapTilesNum = new int [this.gamePanel.maxWorldCol][this.gamePanel.maxWorldRow];
 
         getTileImage();
         loadMap();
@@ -56,7 +56,7 @@ public class TileManager {
             int col = 0;
             int row = 0;
 
-            while(col < this.gamePanel.getMaxScreenCol() && row < this.gamePanel.getMaxScreenRow())
+            while(col < this.gamePanel.maxWorldCol && row < this.gamePanel.maxWorldRow)
             {
                 String line = br.readLine();
 
@@ -84,25 +84,25 @@ public class TileManager {
     public void draw(Graphics2D g2d)
     {
          
-        int col = 0;
-        int row = 0;
-        int x = 0;
-        int y = 0;
+        int worldCol = 0;
+        int worldRow = 0;
 
-        while(col < this.gamePanel.getMaxScreenCol() && row < this.gamePanel.getMaxScreenRow())
+        while(worldCol < this.gamePanel.maxWorldCol && worldRow < this.gamePanel.maxWorldRow)
         {
-            int tileNum = this.mapTilesNum[col][row];
+            int tileNum = this.mapTilesNum[worldCol][worldRow];
 
-            g2d.drawImage(this.tiles[tileNum].getImage(),x,y,this.gamePanel.getTileSize(),this.gamePanel.getTileSize(),null);
-            col++;
-            x += this.gamePanel.getTileSize();
+            int worldX = worldCol * gamePanel.getTileSize();
+            int worldY = worldRow * gamePanel.getTileSize();
+            int screenX = worldX - gamePanel.player.getWorldX() + gamePanel.player.getScreenX();
+            int screenY = worldY - gamePanel.player.getWorldY() + gamePanel.player.getScreenY();
 
-            if(col == this.gamePanel.getMaxScreenCol())
+            g2d.drawImage(this.tiles[tileNum].getImage(), screenX, screenY,this.gamePanel.getTileSize(),this.gamePanel.getTileSize(),null);
+            worldCol++;
+
+            if(worldCol == this.gamePanel.getMaxScreenCol())
             {
-                col = 0;
-                x = 0;
-                row++;
-                y += this.gamePanel.getTileSize();
+                worldCol = 0;
+                worldRow++;
             }
         }
     }

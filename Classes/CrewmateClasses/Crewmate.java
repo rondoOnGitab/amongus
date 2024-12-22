@@ -11,8 +11,8 @@ public class Crewmate extends Entity{
 
     public Crewmate(int x, int y,int speed,MyPanel gamePanel, KeyHandler kh){
         super(x, y,speed,gamePanel,kh);
-        this.x = x;
-        this.y = y;
+        this.worldX = x;
+        this.worldY = y;
 
         this.tasks = initializeTasks();
     }
@@ -34,10 +34,10 @@ public class Crewmate extends Entity{
     }
 
     public int getX(){
-        return this.x;
+        return this.worldX;
     }
 
     public int getY(){
-        return this.y;
+        return this.worldY;
     }
 }

@@ -17,8 +17,8 @@ public class MyPanel extends JPanel implements Runnable{
     
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    private final int screenWidth = (int)screenSize.getWidth();
-    private final int screenHeight = (int)screenSize.getHeight();
+    public int screenWidth = (int)screenSize.getWidth();
+    public int screenHeight = (int)screenSize.getHeight();
 
     private final int originalTileSize = 16; //grandezza degli sprite, dei tile
     private final int scale = 6; //ordine per cui lo moltiplichiamo
@@ -35,7 +35,13 @@ public class MyPanel extends JPanel implements Runnable{
 
     private Thread gameThread;
 
-    private Entity player;
+    public Entity player;
+
+    //world settings
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow;
 
     public MyPanel()
     {
@@ -45,7 +51,7 @@ public class MyPanel extends JPanel implements Runnable{
         this.addKeyListener(kh);
         this.setFocusable(true);
 
-        player = new Entity(100, 100, 2, this, this.kh);
+        player = new Entity(tileSize * this.maxScreenCol, tileSize * this.maxScreenRow, 2, this, this.kh);
     }
 
     public void startGameThread()
@@ -108,4 +114,5 @@ public class MyPanel extends JPanel implements Runnable{
     {
         return this.maxScreenRow;
     }
+
 }
