@@ -18,7 +18,7 @@ public class TileManager {
 
     public TileManager(MyPanel gamePanel)
     {
-        this.gamePanel = this.gamePanel;
+        this.gamePanel = gamePanel;
 
         this.tiles = new Tile[10];
         //this.mapTilesNum = new int [this.this.gamePanel.maxScreenCol][this.this.gamePanel.maxScreenRow];
@@ -39,7 +39,7 @@ public class TileManager {
 
     public void draw(Graphics2D g2d)
     {
-        /* 
+         
         int col = 0;
         int row = 0;
         int x = 0;
@@ -59,19 +59,5 @@ public class TileManager {
                 y += this.gamePanel.getTileSize();
             }
         }
-        */
-        /* 
-        if(this.tiles[0].getImage() != null)
-        {
-            g2d.drawImage(this.tiles[0].getImage(),0,0,null); //Cosi funziona 
-        }
-        */
-        /* 
-        if(this.tiles[0].getImage() != null)
-        {
-            g2d.drawImage(this.tiles[0].getImage(),x,y,this.gamePanel.getTileSize(),this.gamePanel.getTileSize(),null); 
-            //Cosi non funziona una sega del cazzo
-        }       
-        */
     }
 }
