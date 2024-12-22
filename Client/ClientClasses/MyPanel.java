@@ -24,8 +24,8 @@ public class MyPanel extends JPanel implements Runnable{
     private final int scale = 6; //ordine per cui lo moltiplichiamo
     private final int tileSize = scale*originalTileSize; // cambiamo uno tra originalTileSize o scale per avere una grandezza migliore
 
-    private final int maxScreenCol = (int)screenWidth/tileSize;
-    private final int maxScreenRow = (int)screenHeight/tileSize;
+    private final int maxScreenCol = (int)screenWidth/tileSize; //20 col con scale x6
+    private final int maxScreenRow = (int)screenHeight/tileSize;//11 row con scale x6
 
     private final int FPS = 60;
 
