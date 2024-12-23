@@ -43,7 +43,7 @@ public class Entity {
         this.direction = "up";
         this.kh = kh;
         this.gamePanel = gamePanel;
-        this.hitBox = new Rectangle(0,0,(int)(this.gamePanel.getTileSize()*0.66),(int)(this.gamePanel.getTileSize()*0.66));
+        this.hitBox = new Rectangle(0,0,(int)(this.gamePanel.getTileSize()*0.58),(int)(this.gamePanel.getTileSize()*0.58));
 
         this.screenX = this.gamePanel.getScreenWidth()/2 - (this.gamePanel.getTileSize()/2);
         this.screenY = this.gamePanel.getScreenHeight()/2 - (this.gamePanel.getTileSize()/2);
@@ -72,38 +72,60 @@ public class Entity {
 
     public void update()
     {
-        if (this.kh.upPressed == true || this.kh.downPressed == true || 
-            this.kh.leftPressed == true || this.kh.rightPressed == true) {
-                if (this.kh.upPressed == true) {
-                    this.direction = "up";
-                    this.worldY -= this.speed;
-                } 
-                else if (this.kh.downPressed == true) {
-                    this.direction = "down";
-                    this.worldY += this.speed;
+        if (this.kh.upPressed == true || this.kh.downPressed == true || this.kh.leftPressed == true || this.kh.rightPressed == true)
+        {
+            //Controlla quale sia premuto
+            if (this.kh.upPressed == true) {
+                this.direction = "up";
+            } 
+            else if (this.kh.downPressed == true) {
+                this.direction = "down";                    
+            }
+            else if (this.kh.leftPressed == true) {
+                this.direction = "left";
+            }
+            else if (this.kh.rightPressed == true) {
+                this.direction = "right";
+            }
+            
+            //Fa l'animazione del player
+            this.spriteCounter++;
+            if (this.spriteCounter > 12) {
+                if (this.spriteNum == 1) {
+                    this.spriteNum = 2;
                 }
-                else if (this.kh.leftPressed == true) {
-                    this.direction = "left";
-                    this.worldX -= this.speed;
+                else if (this.spriteNum == 2) {
+                    this.spriteNum = 3;
                 }
-                else if (this.kh.rightPressed == true) {
-                    this.direction = "right";
-                    this.worldX += this.speed;
+                else if (this.spriteNum == 3) {
+                    this.spriteNum = 1;
                 }
-        
-                this.spriteCounter++;
-                if (this.spriteCounter > 12) {
-                    if (this.spriteNum == 1) {
-                        this.spriteNum = 2;
-                    }
-                    else if (this.spriteNum == 2) {
-                        this.spriteNum = 3;
-                    }
-                    else if (this.spriteNum == 3) {
-                        this.spriteNum = 1;
-                    }
-                    this.spriteCounter = 0;
-                }
+                this.spriteCounter = 0;
+            }
+
+            //Controllo se non sta collidendo, a quel punto muovo
+            this.collisionOn = false;
+            this.gamePanel.getCollisionDetector().checkTile(this);
+
+            if(!this.collisionOn)
+            {
+                switch (this.direction) {
+                    case "up":
+                        this.worldY -= this.speed;                           
+                        break;
+                    case "down":
+                        this.worldY += this.speed;
+                        break;
+                    case "left":
+                        this.worldX -= this.speed;
+                        break;
+                    case "right":
+                        this.worldX += this.speed;
+                        break;
+                    default:
+                        break;
+                   }
+            }
         } 
     }
 
@@ -166,6 +188,7 @@ public class Entity {
        g2d.drawImage(image, this.screenX, this.screenY, this.gamePanel.getTileSize(), this.gamePanel.getTileSize(), null);
     }
 
+    //GETTERS & SETTERS
     public int getWorldX() {
         return this.worldX;
     }
@@ -184,4 +207,28 @@ public class Entity {
         return this.screenY;
     }
 
+    public Rectangle getHitBox()
+    {
+        return this.hitBox;
+    }
+
+    public String getDirection()
+    {
+        return this.direction;
+    }
+
+    public int getSpeed()
+    {
+        return this.speed;
+    }
+
+    public boolean isColliding()
+    {
+        return this.collisionOn;
+    }
+
+    public void setCollision(boolean state)
+    {
+        this.collisionOn = state;
+    }
 }

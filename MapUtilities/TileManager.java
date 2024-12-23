@@ -1,6 +1,4 @@
-package Map;
-
-import Map.Tile;
+package MapUtilities;
 
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -11,6 +9,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 import Client.ClientClasses.MyPanel;
+import MapUtilities.Tile;
 
 public class TileManager {
     
@@ -50,7 +49,7 @@ public class TileManager {
     {
         try
         {
-            FileReader fr = new FileReader("Map/Map.txt");
+            FileReader fr = new FileReader("MapUtilities/Map.txt");
             BufferedReader br = new BufferedReader(fr);
 
             int col = 0;
@@ -105,5 +104,16 @@ public class TileManager {
                 worldRow++;
             }
         }
+    }
+
+    //GETTERS & SETTERS
+    public int getMapTileNumByIndexes(int col,int row)
+    {
+        return this.mapTilesNum[col][row];
+    }
+
+    public Tile getTileByIndex(int index)
+    {
+        return this.tiles[index];
     }
 }

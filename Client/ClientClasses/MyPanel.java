@@ -1,7 +1,8 @@
 package Client.ClientClasses;
 
 import Classes.*;
-import Map.TileManager;
+import MapUtilities.CollisionDetector;
+import MapUtilities.TileManager;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -37,6 +38,8 @@ public class MyPanel extends JPanel implements Runnable{
 
     private Entity player;
 
+    private CollisionDetector collisionDetector;
+
     //WORLD SETTINGS
     private final int maxWorldCol = 50;
     private final int maxWorldRow = 50;
@@ -52,6 +55,7 @@ public class MyPanel extends JPanel implements Runnable{
         this.setFocusable(true);
 
         this.player = new Entity(tileSize * this.maxScreenCol, tileSize * this.maxScreenRow, 5, this, this.kh);
+        this.collisionDetector = new CollisionDetector(this);
     }
 
     public void startGameThread()
@@ -141,5 +145,15 @@ public class MyPanel extends JPanel implements Runnable{
     public Entity getPlayer()
     {
         return this.player;
+    }
+
+    public TileManager getTileManager()
+    {
+        return this.tileManager;
+    }
+
+    public CollisionDetector getCollisionDetector()
+    {
+        return this.collisionDetector;
     }
 }

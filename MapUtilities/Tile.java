@@ -1,4 +1,4 @@
-package Map;
+package MapUtilities;
 
 import java.awt.image.BufferedImage;
 
@@ -22,7 +22,7 @@ public class Tile{
         this.image = img;
     }
 
-    public boolean isSolid()
+    public boolean getCollision()
     {
         return this.collision;
     }
