@@ -46,6 +46,8 @@ public class MyPanel extends JPanel implements Runnable{
     private final int worldWidth = tileSize * maxWorldCol;
     private final int worldHeight = tileSize * maxWorldRow;
 
+    public EventHandler eHandler = new EventHandler(this);
+
     public MyPanel()
     {
         this.setPreferredSize(this.screenSize);
