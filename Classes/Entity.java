@@ -22,13 +22,13 @@ public class Entity {
     protected KeyHandler kh;
     protected MyPanel gamePanel;
 
-    public int spriteNum = 1;
-    public int spriteCounter = 0;
-    public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
-    public String direction;
+    protected int spriteNum = 1;
+    protected int spriteCounter = 0;
+    protected BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
+    protected String direction;
 
-    private final int screenX;
-    private final int screenY;
+    protected final int screenX;
+    protected final int screenY;
 
     public Entity(int x, int y, int speed, MyPanel gamePanel, KeyHandler kh) {
         this.nome = "";
@@ -40,26 +40,26 @@ public class Entity {
         this.kh = kh;
         this.gamePanel = gamePanel;
 
-        screenX = gamePanel.screenWidth/2 - (gamePanel.getTileSize()/2);
-        screenY = gamePanel.screenHeight/2 - (gamePanel.getTileSize()/2);
+        this.screenX = this.gamePanel.getScreenWidth()/2 - (this.gamePanel.getTileSize()/2);
+        this.screenY = this.gamePanel.getScreenHeight()/2 - (this.gamePanel.getTileSize()/2);
 
         getPlayerImage();
     }
 
     public void getPlayerImage(){
         try {
-            up1 = ImageIO.read(new FileInputStream("Images/Walk0001.png"));
-            up2 = ImageIO.read(new FileInputStream("Images/Walk0007.png"));
-            up3 = ImageIO.read(new FileInputStream("Images/Walk0005.png"));
-            down1 = ImageIO.read(new FileInputStream("Images/Walk0001.png"));
-            down2 = ImageIO.read(new FileInputStream("Images/Walk0007.png"));
-            down3 = ImageIO.read(new FileInputStream("Images/Walk0005.png"));
-            right1 = ImageIO.read(new FileInputStream("Images/Walk0001.png"));
-            right2 = ImageIO.read(new FileInputStream("Images/Walk0007.png"));
-            right3 = ImageIO.read(new FileInputStream("Images/Walk0005.png"));
-            left1 = ImageIO.read(new FileInputStream("Images/Walk00013.png"));
-            left2 = ImageIO.read(new FileInputStream("Images/Walk00014.png"));
-            left3 = ImageIO.read(new FileInputStream("Images/Walk00015.png"));
+            this.up1 = ImageIO.read(new FileInputStream("Images/Walk0001.png"));
+            this.up2 = ImageIO.read(new FileInputStream("Images/Walk0007.png"));
+            this.up3 = ImageIO.read(new FileInputStream("Images/Walk0005.png"));
+            this.down1 = ImageIO.read(new FileInputStream("Images/Walk0001.png"));
+            this.down2 = ImageIO.read(new FileInputStream("Images/Walk0007.png"));
+            this.down3 = ImageIO.read(new FileInputStream("Images/Walk0005.png"));
+            this.right1 = ImageIO.read(new FileInputStream("Images/Walk0001.png"));
+            this.right2 = ImageIO.read(new FileInputStream("Images/Walk0007.png"));
+            this.right3 = ImageIO.read(new FileInputStream("Images/Walk0005.png"));
+            this.left1 = ImageIO.read(new FileInputStream("Images/Walk00013.png"));
+            this.left2 = ImageIO.read(new FileInputStream("Images/Walk00014.png"));
+            this.left3 = ImageIO.read(new FileInputStream("Images/Walk00015.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,37 +67,37 @@ public class Entity {
 
     public void update()
     {
-        if (kh.upPressed == true || kh.downPressed == true || 
-            kh.leftPressed == true || kh.rightPressed == true) {
-                if (kh.upPressed == true) {
-                    direction = "up";
-                    worldY -= speed;
+        if (this.kh.upPressed == true || this.kh.downPressed == true || 
+            this.kh.leftPressed == true || this.kh.rightPressed == true) {
+                if (this.kh.upPressed == true) {
+                    this.direction = "up";
+                    this.worldY -= this.speed;
                 } 
-                else if (kh.downPressed == true) {
-                    direction = "down";
-                    worldY += speed;
+                else if (this.kh.downPressed == true) {
+                    this.direction = "down";
+                    this.worldY += this.speed;
                 }
-                else if (kh.leftPressed == true) {
-                    direction = "left";
-                    worldX -= speed;
+                else if (this.kh.leftPressed == true) {
+                    this.direction = "left";
+                    this.worldX -= this.speed;
                 }
-                else if (kh.rightPressed == true) {
-                    direction = "right";
-                    worldX += speed;
+                else if (this.kh.rightPressed == true) {
+                    this.direction = "right";
+                    this.worldX += this.speed;
                 }
         
-                spriteCounter++;
-                if (spriteCounter > 12) {
-                    if (spriteNum == 1) {
-                        spriteNum = 2;
+                this.spriteCounter++;
+                if (this.spriteCounter > 12) {
+                    if (this.spriteNum == 1) {
+                        this.spriteNum = 2;
                     }
-                    else if (spriteNum == 2) {
-                        spriteNum = 3;
+                    else if (this.spriteNum == 2) {
+                        this.spriteNum = 3;
                     }
-                    else if (spriteNum == 3) {
-                        spriteNum = 1;
+                    else if (this.spriteNum == 3) {
+                        this.spriteNum = 1;
                     }
-                    spriteCounter = 0;
+                    this.spriteCounter = 0;
                 }
         } 
     }
@@ -109,48 +109,48 @@ public class Entity {
 
        BufferedImage image = null;
 
-       switch (direction) {
+       switch (this.direction) {
         case "up":
-            if (spriteNum == 1) {
+            if (this.spriteNum == 1) {
                 image = up1;
             }
-            if (spriteNum == 2) {
+            if (this.spriteNum == 2) {
                 image = up3;
             }
-            if (spriteNum == 3) {
+            if (this.spriteNum == 3) {
                 image = up2;
             }
             break;
         case "down":
-            if (spriteNum == 1) {
+            if (this.spriteNum == 1) {
                 image = down1;
             }
-            if (spriteNum == 2) {
+            if (this.spriteNum == 2) {
                 image = down3;
             }
-            if (spriteNum == 3) {
+            if (this.spriteNum == 3) {
                 image = down2;
             }
             break;
         case "left":
-            if (spriteNum == 1) {
+            if (this.spriteNum == 1) {
                 image = left1;
             }
-            if (spriteNum == 2) {
+            if (this.spriteNum == 2) {
                 image = left3;
             }
-            if (spriteNum == 3) {
+            if (this.spriteNum == 3) {
                 image = left2;
             }
             break;
         case "right":
-            if (spriteNum == 1) {
+            if (this.spriteNum == 1) {
                 image = right1;
             }
-            if (spriteNum == 2) {
+            if (this.spriteNum == 2) {
                 image = right3;
             }
-            if (spriteNum == 3) {
+            if (this.spriteNum == 3) {
                 image = right2;
             }
             break;
@@ -158,15 +158,15 @@ public class Entity {
             break;
        }
 
-       g2d.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+       g2d.drawImage(image, this.screenX, this.screenY, this.gamePanel.getTileSize(), this.gamePanel.getTileSize(), null);
     }
 
     public int getWorldX() {
-        return worldX;
+        return this.worldX;
     }
 
     public int getWorldY() {
-        return worldY;
+        return this.worldY;
     }
 
     public int getScreenX()

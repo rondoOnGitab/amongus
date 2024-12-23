@@ -17,8 +17,8 @@ public class MyPanel extends JPanel implements Runnable{
     
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    public int screenWidth = (int)screenSize.getWidth();
-    public int screenHeight = (int)screenSize.getHeight();
+    private int screenWidth = (int)screenSize.getWidth();
+    private int screenHeight = (int)screenSize.getHeight();
 
     private final int originalTileSize = 16; //grandezza degli sprite, dei tile
     private final int scale = 6; //ordine per cui lo moltiplichiamo
@@ -37,11 +37,11 @@ public class MyPanel extends JPanel implements Runnable{
 
     public Entity player;
 
-    //world settings
-    public final int maxWorldCol = 50;
-    public final int maxWorldRow = 50;
-    public final int worldWidth = tileSize * maxWorldCol;
-    public final int worldHeight = tileSize * maxWorldRow;
+    //WORLD SETTINGS
+    private final int maxWorldCol = 50;
+    private final int maxWorldRow = 50;
+    private final int worldWidth = tileSize * maxWorldCol;
+    private final int worldHeight = tileSize * maxWorldRow;
 
     public MyPanel()
     {
@@ -51,7 +51,7 @@ public class MyPanel extends JPanel implements Runnable{
         this.addKeyListener(kh);
         this.setFocusable(true);
 
-        player = new Entity(tileSize * this.maxScreenCol, tileSize * this.maxScreenRow, 2, this, this.kh);
+        this.player = new Entity(tileSize * this.maxScreenCol, tileSize * this.maxScreenRow, 2, this, this.kh);
     }
 
     public void startGameThread()
@@ -82,9 +82,10 @@ public class MyPanel extends JPanel implements Runnable{
         }
 
     }
+
     public void update()
     {
-        player.update();
+        this.player.update();
     }
 
     public void paintComponent(Graphics g)
@@ -93,12 +94,14 @@ public class MyPanel extends JPanel implements Runnable{
         
         Graphics2D g2d = (Graphics2D)g;
 
-        tileManager.draw(g2d);
+        this.tileManager.draw(g2d);
 
-        player.draw(g2d);
+        this.player.draw(g2d);
 
         g2d.dispose();
     }
+    
+    //GETTERS & SETTERS
 
     public int getTileSize()
     {
@@ -115,4 +118,23 @@ public class MyPanel extends JPanel implements Runnable{
         return this.maxScreenRow;
     }
 
+    public int getScreenWidth()
+    {
+        return this.screenWidth;
+    }
+
+    public int getScreenHeight()
+    {
+        return this.screenHeight;
+    }
+
+    public int getMaxWorldCol()
+    {
+        return this.maxWorldCol;
+    }
+
+    public int getMaxWorldRow()
+    {
+        return this.maxWorldRow;
+    }
 }

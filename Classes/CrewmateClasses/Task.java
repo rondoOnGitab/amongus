@@ -1,9 +1,11 @@
 package Classes.CrewmateClasses;
 
 public class Task {
+
     protected String nome;
     protected int points;
     protected boolean isCompleted;
+    //protected BufferedImage img; //Attributo non sicuro 
 
     public Task(String nome, int points)
     {

@@ -23,7 +23,7 @@ public class TileManager {
         this.gamePanel = gamePanel;
 
         this.tiles = new Tile[10];
-        this.mapTilesNum = new int [this.gamePanel.maxWorldCol][this.gamePanel.maxWorldRow];
+        this.mapTilesNum = new int [this.gamePanel.getMaxWorldCol()][this.gamePanel.getMaxWorldRow()];
 
         getTileImage();
         loadMap();
@@ -56,7 +56,7 @@ public class TileManager {
             int col = 0;
             int row = 0;
 
-            while(col < this.gamePanel.maxWorldCol && row < this.gamePanel.maxWorldRow)
+            while(col < this.gamePanel.getMaxWorldCol() && row < this.gamePanel.getMaxWorldRow())
             {
                 String line = br.readLine();
 
@@ -87,14 +87,14 @@ public class TileManager {
         int worldCol = 0;
         int worldRow = 0;
 
-        while(worldCol < this.gamePanel.maxWorldCol && worldRow < this.gamePanel.maxWorldRow)
+        while(worldCol < this.gamePanel.getMaxWorldCol() && worldRow < this.gamePanel.getMaxWorldRow())
         {
             int tileNum = this.mapTilesNum[worldCol][worldRow];
 
-            int worldX = worldCol * gamePanel.getTileSize();
-            int worldY = worldRow * gamePanel.getTileSize();
-            int screenX = worldX - gamePanel.player.getWorldX() + gamePanel.player.getScreenX();
-            int screenY = worldY - gamePanel.player.getWorldY() + gamePanel.player.getScreenY();
+            int worldX = worldCol * this.gamePanel.getTileSize();
+            int worldY = worldRow * this.gamePanel.getTileSize();
+            int screenX = worldX - this.gamePanel.player.getWorldX() + this.gamePanel.player.getScreenX();
+            int screenY = worldY - this.gamePanel.player.getWorldY() + this.gamePanel.player.getScreenY();
 
             g2d.drawImage(this.tiles[tileNum].getImage(), screenX, screenY,this.gamePanel.getTileSize(),this.gamePanel.getTileSize(),null);
             worldCol++;
