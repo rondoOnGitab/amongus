@@ -32,13 +32,13 @@ public class TileManager {
     public void getTileImage()
     {
         try {
-            this.tiles[0] = new Tile();
+            this.tiles[0] = new Tile(false);
             this.tiles[0].setImage(ImageIO.read(new FileInputStream("Images/Map/Grass.png")));
 
-            this.tiles[1] = new Tile();
+            this.tiles[1] = new Tile(true);
             this.tiles[1].setImage(ImageIO.read(new FileInputStream("Images/Map/Wall.png")));
 
-            this.tiles[2] = new Tile();
+            this.tiles[2] = new Tile(true);
             this.tiles[2].setImage(ImageIO.read(new FileInputStream("Images/Map/Wall2.png")));
         } catch (Exception e) {
             // TODO: handle exception
@@ -93,8 +93,8 @@ public class TileManager {
 
             int worldX = worldCol * this.gamePanel.getTileSize();
             int worldY = worldRow * this.gamePanel.getTileSize();
-            int screenX = worldX - this.gamePanel.player.getWorldX() + this.gamePanel.player.getScreenX();
-            int screenY = worldY - this.gamePanel.player.getWorldY() + this.gamePanel.player.getScreenY();
+            int screenX = worldX - this.gamePanel.getPlayer().getWorldX() + this.gamePanel.getPlayer().getScreenX();
+            int screenY = worldY - this.gamePanel.getPlayer().getWorldY() + this.gamePanel.getPlayer().getScreenY();
 
             g2d.drawImage(this.tiles[tileNum].getImage(), screenX, screenY,this.gamePanel.getTileSize(),this.gamePanel.getTileSize(),null);
             worldCol++;

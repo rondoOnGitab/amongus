@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import Client.ClientClasses.MyPanel;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 
 public class Entity {
 
@@ -30,6 +31,9 @@ public class Entity {
     protected final int screenX;
     protected final int screenY;
 
+    protected Rectangle hitBox;
+    protected boolean collisionOn = false;
+
     public Entity(int x, int y, int speed, MyPanel gamePanel, KeyHandler kh) {
         this.nome = "";
         this.worldX = x;
@@ -39,6 +43,7 @@ public class Entity {
         this.direction = "up";
         this.kh = kh;
         this.gamePanel = gamePanel;
+        this.hitBox = new Rectangle(0,0,(int)(this.gamePanel.getTileSize()*0.66),(int)(this.gamePanel.getTileSize()*0.66));
 
         this.screenX = this.gamePanel.getScreenWidth()/2 - (this.gamePanel.getTileSize()/2);
         this.screenY = this.gamePanel.getScreenHeight()/2 - (this.gamePanel.getTileSize()/2);

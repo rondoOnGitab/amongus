@@ -35,7 +35,7 @@ public class MyPanel extends JPanel implements Runnable{
 
     private Thread gameThread;
 
-    public Entity player;
+    private Entity player;
 
     //WORLD SETTINGS
     private final int maxWorldCol = 50;
@@ -51,7 +51,7 @@ public class MyPanel extends JPanel implements Runnable{
         this.addKeyListener(kh);
         this.setFocusable(true);
 
-        this.player = new Entity(tileSize * this.maxScreenCol, tileSize * this.maxScreenRow, 2, this, this.kh);
+        this.player = new Entity(tileSize * this.maxScreenCol, tileSize * this.maxScreenRow, 5, this, this.kh);
     }
 
     public void startGameThread()
@@ -136,5 +136,10 @@ public class MyPanel extends JPanel implements Runnable{
     public int getMaxWorldRow()
     {
         return this.maxWorldRow;
+    }
+
+    public Entity getPlayer()
+    {
+        return this.player;
     }
 }

@@ -5,11 +5,11 @@ import java.awt.image.BufferedImage;
 public class Tile{
     
     private BufferedImage image;
-    private boolean collision = false;
+    private boolean collision;
 
-    public Tile()
+    public Tile(boolean collision)
     {
-        
+        this.collision = collision;
     }
 
     public BufferedImage getImage()
@@ -20,5 +20,15 @@ public class Tile{
     public void setImage(BufferedImage img)
     {
         this.image = img;
+    }
+
+    public boolean isSolid()
+    {
+        return this.collision;
+    }
+
+    public void setCollision(boolean collision)
+    {
+        this.collision = collision;
     }
 }
