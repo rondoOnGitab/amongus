@@ -34,6 +34,9 @@ public class Entity {
     protected Rectangle hitBox;
     protected boolean collisionOn = false;
 
+    protected int defaultX = 0;
+    protected int defaultY = 0;
+
     public Entity(int x, int y, int speed, MyPanel gamePanel, KeyHandler kh) {
         this.nome = "";
         this.worldX = x;
@@ -225,6 +228,16 @@ public class Entity {
     public boolean isColliding()
     {
         return this.collisionOn;
+    }
+
+    public int getDeafultX()
+    {
+        return this.defaultX;
+    }
+
+    public int getDeafultY()
+    {
+        return this.defaultY;
     }
 
     public void setCollision(boolean state)

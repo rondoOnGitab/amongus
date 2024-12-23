@@ -39,10 +39,12 @@ public class EventHandler {
             }
         }
 
-        gamePanel.getPlayer().getHitBox().x = gamePanel.getPlayer().getHitBoxx();
-        gamePanel.getPlayer().getHitBox().y = gamePanel.getPlayer().getHitBoxy();
+        /* 
+        gamePanel.getPlayer().getHitBox().x = gamePanel.getPlayer().getHitBox();
+        gamePanel.getPlayer().getHitBox().y = gamePanel.getPlayer().getHitBox();
         eventRect.x = eventRectDefaultX;
         eventRect.y = eventRectDefaultY;
+        */
 
         return hit;
     }
