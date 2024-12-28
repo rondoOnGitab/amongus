@@ -3,6 +3,7 @@ package Client.ClientClasses;
 import Classes.*;
 import MapUtilities.CollisionDetector;
 import MapUtilities.TileManager;
+import Server.ServerClasses.CoordinatesHandler;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.security.Key;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -37,6 +39,7 @@ public class MyPanel extends JPanel implements Runnable{
     private Thread gameThread;
 
     private Entity player;
+    private ArrayList<Entity> players;
 
     private CollisionDetector collisionDetector;
 
@@ -47,6 +50,7 @@ public class MyPanel extends JPanel implements Runnable{
     private final int worldHeight = tileSize * maxWorldRow;
 
     public EventHandler eHandler = new EventHandler(this);
+    public GUIHandler gh = new GUIHandler(this);
 
     public MyPanel()
     {
@@ -57,6 +61,7 @@ public class MyPanel extends JPanel implements Runnable{
         this.setFocusable(true);
 
         this.player = new Entity(tileSize * this.maxScreenCol, tileSize * this.maxScreenRow, 5, this, this.kh);
+        this.players.add(player);
         this.collisionDetector = new CollisionDetector(this);
     }
 
@@ -64,6 +69,7 @@ public class MyPanel extends JPanel implements Runnable{
     {
         this.gameThread = new Thread(this);
         this.gameThread.start();
+        this.gh.start();
     }
 
     @Override
@@ -76,6 +82,7 @@ public class MyPanel extends JPanel implements Runnable{
 
         while (gameThread != null)
         {
+
             currentTime = System.nanoTime();
             delta+= (currentTime-lastTime) / drawInterval;
             lastTime=currentTime;
@@ -147,6 +154,11 @@ public class MyPanel extends JPanel implements Runnable{
     public Entity getPlayer()
     {
         return this.player;
+    }
+
+    public ArrayList<Entity> getPlayers()
+    {
+        return this.players;
     }
 
     public TileManager getTileManager()

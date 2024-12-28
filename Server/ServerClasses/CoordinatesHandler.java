@@ -5,13 +5,15 @@ import Client.ClientClasses.GUIHandler;
 
 import java.util.ArrayList;
 
-public class CoordinatesHandler //Non è un thread è un gestore
+public class CoordinatesHandler
 {
     GUIHandler gh;
     ArrayList<Entity> players;
-    public CoordinatesHandler(GUIHandler gh)
+
+    public CoordinatesHandler(GUIHandler gh, ArrayList<Entity> players)
     {
         this.gh = gh;
+        this.players = players;
     }
 
     //Controlla le coordinate di player X le manda al GUIHandler.java
