@@ -1,6 +1,7 @@
 package Classes.ImpostorClasses;
 
 import Classes.*;
+import Classes.CrewmateClasses.*;
 import Client.ClientClasses.MyPanel;
 
 public class Impostor extends Entity{
@@ -9,8 +10,8 @@ public class Impostor extends Entity{
         super(x, y,speed,gamePanel,kh);
     }
 
-    public void kill()
+    public void kill(Crewmate crewmate)
     {
-        
+        crewmate.killed();
     }
 }

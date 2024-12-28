@@ -33,6 +33,11 @@ public class Crewmate extends Entity{
         return true;
     }
 
+    public void killed()
+    {
+        this.state = MyState.KILLED;
+    }
+
     public int getX(){
         return this.worldX;
     }
