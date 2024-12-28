@@ -42,7 +42,7 @@ public class Entity {
         this.worldX = x;
         this.worldY = y;
         this.speed = speed;
-        //this.state = MyState.ALIVE;
+        this.state = MyState.ALIVE;
         this.direction = "up";
         this.kh = kh;
         this.gamePanel = gamePanel;
@@ -192,6 +192,12 @@ public class Entity {
     }
 
     //GETTERS & SETTERS
+
+    public boolean isKilled()
+    {
+       return this.state == MyState.KILLED ? true:false;
+    }
+
     public int getWorldX() {
         return this.worldX;
     }

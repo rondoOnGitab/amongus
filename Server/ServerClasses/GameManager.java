@@ -14,16 +14,11 @@ public class GameManager extends Thread{
     public void run()
     {
         while(true)
-        {
-            if(this.state.checkKilled())
+        {   
+            if(this.state.isFinished())
             {
-
+                
             }
-            if(this.state.checkTasks())
-            {
-
-            }
-
         }   
     }
 }

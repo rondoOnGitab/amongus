@@ -5,7 +5,7 @@ import Client.ClientClasses.GUIHandler;
 
 import java.util.ArrayList;
 
-public class CoordinatesHandler extends Thread //Non è un thread è un gestore
+public class CoordinatesHandler //Non è un thread è un gestore
 {
     GUIHandler gh;
     ArrayList<Entity> players;
@@ -14,16 +14,6 @@ public class CoordinatesHandler extends Thread //Non è un thread è un gestore
         this.gh = gh;
     }
 
-    public void run()
-    {
-        while(true)
-        {
-            //Controlla le coordinate di player X le manda al GUIHandler.java
-            // per sapere il player scorro la lista di player controllo dalla socket l'ip e la port per capire se è il personaggio corretto
-            for (Entity e : this.players)
-            {
-                
-            }
-        }
-    }
+    //Controlla le coordinate di player X le manda al GUIHandler.java
+    // per sapere il player scorro la lista di player controllo dalla socket l'ip e la port per capire se è il personaggio corretto
 }
