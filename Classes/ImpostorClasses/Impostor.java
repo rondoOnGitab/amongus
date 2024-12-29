@@ -12,6 +12,7 @@ public class Impostor extends Entity{
 
     public void kill(Crewmate crewmate)
     {
-        crewmate.killed();
+        if(this.state.getBehavior("kill") && crewmate.getState() == MyState.ALIVE)
+            crewmate.killed();
     }
 }

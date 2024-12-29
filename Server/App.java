@@ -10,7 +10,7 @@ import Server.ServerClasses.GameState;
 
 public class App
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
         GameManager manager = new GameManager();
         manager.start();

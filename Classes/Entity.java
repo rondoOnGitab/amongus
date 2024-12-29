@@ -3,9 +3,14 @@ package Classes;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 import javax.imageio.ImageIO;
 
+import Classes.CrewmateClasses.Crewmate;
 import Client.ClientClasses.MyPanel;
 
 import java.awt.Color;
@@ -130,6 +135,32 @@ public class Entity {
                    }
             }
         } 
+
+        try
+        {
+            DatagramSocket socket = new DatagramSocket();
+
+            InetAddress localHost = InetAddress.getLocalHost();
+
+            String mex = "x: "+this.worldX+" y: "+this.worldY+" dir: "+this.direction+" img: "+this.direction+this.spriteNum;
+
+            byte[] buffer = mex.getBytes();
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+            packet.setAddress(localHost);
+            packet.setPort(12345);
+            socket.send(packet);
+
+            byte[] bufferRisp = new byte[1500]; //1500 per MTU (cerca cos'è)
+            DatagramPacket packetRisp = new DatagramPacket(bufferRisp, bufferRisp.length);
+            socket.receive(packetRisp);
+            String mexRisp = new String(packetRisp.getData(),0,packetRisp.getLength());
+            System.out.println(mexRisp);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
     }
 
     public void draw(Graphics2D g2d){
@@ -196,6 +227,11 @@ public class Entity {
     public boolean isKilled()
     {
        return this.state == MyState.KILLED ? true:false;
+    }
+
+    public MyState getState()
+    {
+        return this.state;
     }
 
     public int getWorldX() {
