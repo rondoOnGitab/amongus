@@ -22,7 +22,9 @@ public class EventHandler {
     }
 
     public void checkEvent(){
-        
+        if(hit(27, 16, "right") == true){
+            //damagePit();
+        }
     }
 
     public boolean hit(int eventCol, int eventRow, String reqDirection){
@@ -47,5 +49,10 @@ public class EventHandler {
         */
 
         return hit;
+    }
+
+    public void damagePit(int gameState){
+        //gamePanel.get = gameState;
+
     }
 }
