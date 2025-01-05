@@ -4,12 +4,14 @@ import Classes.*;
 import MapUtilities.CollisionDetector;
 import MapUtilities.TileManager;
 import Server.ServerClasses.CoordinatesHandler;
+import java.awt.event.ActionEvent;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.security.Key;
 import java.util.ArrayList;
 
@@ -52,18 +54,19 @@ public class MyPanel extends JPanel implements Runnable{
     public EventHandler eHandler = new EventHandler(this);
     public GUIHandler gh = new GUIHandler(this);
 
-    public MyPanel()
-    {
+    public MyPanel() {
         this.setPreferredSize(this.screenSize);
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(kh);
         this.setFocusable(true);
 
+        // Altra inizializzazione...
         this.player = new Entity(tileSize * this.maxScreenCol, tileSize * this.maxScreenRow, 5, this, this.kh);
-        this.players.add(player);
         this.collisionDetector = new CollisionDetector(this);
     }
+
+    
 
     public void startGameThread()
     {
@@ -107,11 +110,15 @@ public class MyPanel extends JPanel implements Runnable{
         
         Graphics2D g2d = (Graphics2D)g;
 
+
         this.tileManager.draw(g2d);
 
         this.player.draw(g2d);
 
         g2d.dispose();
+
+        
+
     }
     
     //GETTERS & SETTERS

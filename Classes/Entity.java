@@ -16,7 +16,8 @@ import Client.ClientClasses.MyPanel;
 import java.awt.Color;
 import java.awt.Rectangle;
 
-public class Entity {
+public class Entity implements Runnable{
+    protected Thread th;
 
     protected  String nome;
 
@@ -57,6 +58,33 @@ public class Entity {
         this.screenY = this.gamePanel.getScreenHeight()/2 - (this.gamePanel.getTileSize()/2);
 
         getPlayerImage();
+    }
+
+    public void run(){
+        try
+        {
+            DatagramSocket socket = new DatagramSocket();
+
+            InetAddress localHost = InetAddress.getLocalHost();
+
+            String mex = "x: "+this.worldX+" y: "+this.worldY+" dir: "+this.direction+" img: "+this.direction+this.spriteNum;
+
+            byte[] buffer = mex.getBytes();
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+            packet.setAddress(localHost);
+            packet.setPort(12345);
+            socket.send(packet);
+
+            byte[] bufferRisp = new byte[1500]; //1500 per MTU (cerca cos'è)
+            DatagramPacket packetRisp = new DatagramPacket(bufferRisp, bufferRisp.length);
+            socket.receive(packetRisp);
+            String mexRisp = new String(packetRisp.getData(),0,packetRisp.getLength());
+            System.out.println(mexRisp);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
     }
 
     public void getPlayerImage(){
@@ -135,32 +163,6 @@ public class Entity {
                    }
             }
         } 
-
-        try
-        {
-            DatagramSocket socket = new DatagramSocket();
-
-            InetAddress localHost = InetAddress.getLocalHost();
-
-            String mex = "x: "+this.worldX+" y: "+this.worldY+" dir: "+this.direction+" img: "+this.direction+this.spriteNum;
-
-            byte[] buffer = mex.getBytes();
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-            packet.setAddress(localHost);
-            packet.setPort(12345);
-            socket.send(packet);
-
-            byte[] bufferRisp = new byte[1500]; //1500 per MTU (cerca cos'è)
-            DatagramPacket packetRisp = new DatagramPacket(bufferRisp, bufferRisp.length);
-            socket.receive(packetRisp);
-            String mexRisp = new String(packetRisp.getData(),0,packetRisp.getLength());
-            System.out.println(mexRisp);
-
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-
     }
 
     public void draw(Graphics2D g2d){
