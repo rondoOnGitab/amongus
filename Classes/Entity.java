@@ -86,6 +86,7 @@ public class Entity implements Runnable{
             e.printStackTrace();
         }
     }
+    //prova
 
     public void getPlayerImage(){
         try {
