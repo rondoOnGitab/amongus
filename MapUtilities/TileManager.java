@@ -32,7 +32,7 @@ public class TileManager {
     {
         try {
             this.tiles[0] = new Tile(false);
-            this.tiles[0].setImage(ImageIO.read(new FileInputStream("Images/Map/Grass.png")));
+            this.tiles[0].setImage(ImageIO.read(new FileInputStream("Images/Map/Floor.png")));
 
             this.tiles[1] = new Tile(true);
             this.tiles[1].setImage(ImageIO.read(new FileInputStream("Images/Map/Wall.png")));
