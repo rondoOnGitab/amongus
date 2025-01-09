@@ -60,33 +60,33 @@ public class Entity implements Runnable{
         getPlayerImage();
     }
 
-    public void run(){
-        try
-        {
+    @Override
+    public void run() {
+        try {
             DatagramSocket socket = new DatagramSocket();
+            InetAddress serverAddress = InetAddress.getLocalHost();
 
-            InetAddress localHost = InetAddress.getLocalHost();
+            while (true)
+            {
+                String mex = "x: " + this.worldX + " y: " + this.worldY + " dir: " + this.direction+" img: "+this.direction+this.spriteNum;
+                byte[] buffer = mex.getBytes();
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, serverAddress, 12345);
+                socket.send(packet);
 
-            String mex = "x: "+this.worldX+" y: "+this.worldY+" dir: "+this.direction+" img: "+this.direction+this.spriteNum;
+                // Ricezione dei dati
+                byte[] bufferRisp = new byte[1500];
+                DatagramPacket packetRisp = new DatagramPacket(bufferRisp, bufferRisp.length);
+                socket.receive(packetRisp);
+                String mexRisp = new String(packetRisp.getData(), 0, packetRisp.getLength());
+                System.out.println(mexRisp);
 
-            byte[] buffer = mex.getBytes();
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-            packet.setAddress(localHost);
-            packet.setPort(12345);
-            socket.send(packet);
-
-            byte[] bufferRisp = new byte[1500]; //1500 per MTU (cerca cos'è)
-            DatagramPacket packetRisp = new DatagramPacket(bufferRisp, bufferRisp.length);
-            socket.receive(packetRisp);
-            String mexRisp = new String(packetRisp.getData(),0,packetRisp.getLength());
-            System.out.println(mexRisp);
+                Thread.sleep(100);
+            }
 
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
     }
-    //prova
 
     public void getPlayerImage(){
         try {

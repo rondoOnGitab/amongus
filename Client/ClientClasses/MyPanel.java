@@ -52,7 +52,6 @@ public class MyPanel extends JPanel implements Runnable{
     private final int worldHeight = tileSize * maxWorldRow;
 
     public EventHandler eHandler = new EventHandler(this);
-    public GUIHandler gh = new GUIHandler(this);
 
     public MyPanel() {
         this.setPreferredSize(this.screenSize);
@@ -72,7 +71,6 @@ public class MyPanel extends JPanel implements Runnable{
     {
         this.gameThread = new Thread(this);
         this.gameThread.start();
-        this.gh.start();
     }
 
     @Override
@@ -102,6 +100,8 @@ public class MyPanel extends JPanel implements Runnable{
     public void update()
     {
         this.player.update();
+        for (Entity p : this.players)
+            p.update();
     }
 
     public void paintComponent(Graphics g)
@@ -114,6 +114,9 @@ public class MyPanel extends JPanel implements Runnable{
         this.tileManager.draw(g2d);
 
         this.player.draw(g2d);
+
+        for (Entity p : this.players)
+            p.draw(g2d);
 
         g2d.dispose();
 
